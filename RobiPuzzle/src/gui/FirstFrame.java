@@ -20,8 +20,7 @@ public class FirstFrame extends JFrame {
     super();
     this.setVisible(true);
     this.configureFrame();
-    
-    
+       
     pack();
   }
   
