@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
- * TODO DESCRIPTION
+ * The first JFrame displayed when the application starts
  * 
  * @author Adrian.Haidu
  */
