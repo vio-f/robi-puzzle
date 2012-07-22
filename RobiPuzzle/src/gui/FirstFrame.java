@@ -32,7 +32,7 @@ public class FirstFrame extends JFrame {
   private GridLayout mainGridLayout = new GridLayout(2, 2);
 
   /** imagePanel */
-  private OriginalImagePanel imagePanel = new OriginalImagePanel();
+  private OriginalImagePanel imagePanel = null;
 
   /** puzzlePiecesPanel */
   private JPanel puzzlePiecesPanel = new JPanel();
@@ -72,8 +72,9 @@ public class FirstFrame extends JFrame {
    */
   private void configComponents() {
     this.panelDimensions = new Dimension(this.getWidth() / 2, this.getHeight() / 2);
-    // set panel dimensions
-    this.imagePanel.setSize(this.panelDimensions);
+    //this.panelDimensions = new Dimension(400, 300);
+    this.imagePanel = new OriginalImagePanel();
+ 
     this.add(this.imagePanel);
     this.add(this.puzzlePiecesPanel);
     this.add(this.reconstructionPanel);
