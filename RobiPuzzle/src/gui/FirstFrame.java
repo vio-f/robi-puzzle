@@ -3,13 +3,21 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.List;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import test.LoadImageApp;
 
 /**
  * The first JFrame displayed when the application starts
@@ -18,10 +26,26 @@ import javax.swing.JPanel;
  */
 public class FirstFrame extends JFrame {
   /** initialDimension */
-  private Dimension initialDimension = new Dimension(640, 480);
-  /** buttonList */
-  private ArrayList<JButton> buttonList = new ArrayList<JButton>();
-  
+  private Dimension initialDimension = new Dimension(800, 600);
+
+  /** mainGridLayout */
+  private GridLayout mainGridLayout = new GridLayout(2, 2);
+
+  /** imagePanel */
+  private OriginalImagePanel imagePanel = new OriginalImagePanel();
+
+  /** puzzlePiecesPanel */
+  private JPanel puzzlePiecesPanel = new JPanel();
+
+  /** reconstructionPanel */
+  private JPanel reconstructionPanel = new JPanel();
+
+  /** optionsPanel */
+  private JPanel optionsPanel = new JPanel();
+
+  /** panelDimensions */
+  private Dimension panelDimensions = null;
+
   /**
    * Constructs a new instance.
    */
@@ -29,59 +53,38 @@ public class FirstFrame extends JFrame {
     super();
     this.setVisible(true);
     this.configureFrame();
+    this.configComponents();
     this.addComponents();
-    this.changeText();
     pack();
   }
-  
+
   /**
    * Set initial properties of the frame
    */
   private void configureFrame() {
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setPreferredSize(this.initialDimension);
-    BorderLayout borderLayout = new BorderLayout();
-    this.setLayout(borderLayout);
+    this.setLayout(this.mainGridLayout);
   }
-  
+
+  /**
+   * Configure components before they are added to the frame
+   */
+  private void configComponents() {
+    this.panelDimensions = new Dimension(this.getWidth() / 2, this.getHeight() / 2);
+    // set panel dimensions
+    this.imagePanel.setSize(this.panelDimensions);
+    this.add(this.imagePanel);
+    this.add(this.puzzlePiecesPanel);
+    this.add(this.reconstructionPanel);
+    this.add(this.optionsPanel);
+  }
+
   /**
    * Populate the frame with content
    */
   private void addComponents() {
-    JPanel northPanel = new JPanel();
-    JPanel southPanel = new JPanel();
-    //add panels to appropriate location
-    this.add(northPanel, BorderLayout.NORTH);
-    this.add(southPanel, BorderLayout.SOUTH);
-    
-    for (int i = 0; i < 40; i++) {
-      JButton but = new JButton(i + "");
-      //set destination
-      if (i%2==0){
-      northPanel.add(but);
-      }
-      else {
-        southPanel.add(but);
-      }
-      this.buttonList.add(but);
-          }
-  }
-  
-  /**
-   * Change the text of all buttons
-   */
-  private void changeText() {
-    try {
-      Thread.sleep(5*1000);
-    } catch (InterruptedException e) {
-      // TODO Add your own exception handling here, consider logging
-      e.printStackTrace();
-    }
-    for (int i = 0; i < this.buttonList.size(); i++) {
-      JButton jb = this.buttonList.get(i);
-      jb.setText("New text " + i);
-      
-    }
+
   }
 
 }
