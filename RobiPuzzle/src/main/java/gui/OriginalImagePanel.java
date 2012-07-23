@@ -1,12 +1,10 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
@@ -19,6 +17,9 @@ import javax.swing.JPanel;
  */
 public class OriginalImagePanel extends JPanel {
 
+  /** serialVersionUID */
+  private static final long serialVersionUID = 6657943048017255942L;
+  /** image */
   private BufferedImage image;
 
   /**
@@ -42,7 +43,7 @@ public class OriginalImagePanel extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    this.image = this.resizeImageToScale(this.image, this.getWidth(), this.getHeight(), this.getBackground());
+    this.image = this.resizeImageToSize(this.image, this.getWidth(), this.getHeight(), this.getBackground());
     g.drawImage(this.image, 0, 0, null);
   }
 
@@ -55,9 +56,10 @@ public class OriginalImagePanel extends JPanel {
    * @param background
    * @return
    */
-  public BufferedImage resizeImageToScale(BufferedImage img, int width, int height, Color background) {
+  public BufferedImage resizeImageToSize(BufferedImage img, int width, int height, Color background) {
     int imgWidth = img.getWidth();
     int imgHeight = img.getHeight();
+    //figure out how this magic works
     if (imgWidth * height < imgHeight * width) {
       width = imgWidth * height / imgHeight;
     } else {
