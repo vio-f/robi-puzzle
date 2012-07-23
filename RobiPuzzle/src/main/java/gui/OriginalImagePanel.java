@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- * TODO DESCRIPTION
+ * A JPanel that paints a given image
  * 
  * @author Adrian.Haidu
  */
@@ -21,11 +21,14 @@ public class OriginalImagePanel extends JPanel {
 
   private BufferedImage image;
 
+  /**
+   * Constructs a new instance.
+   */
   public OriginalImagePanel() {
     ClassLoader classLoader = null;
     try {
       classLoader = Thread.currentThread().getContextClassLoader();
-      InputStream input = classLoader.getResourceAsStream("ak47.jpg");
+      InputStream input = classLoader.getResourceAsStream("resources/ak47.jpg");
       this.image = ImageIO.read(input);
       
     } catch (Exception ex) {
@@ -33,11 +36,14 @@ public class OriginalImagePanel extends JPanel {
     }
   }
 
+  /**
+   * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+   */
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     this.image = this.resizeImageToScale(this.image, this.getWidth(), this.getHeight(), this.getBackground());
-    g.drawImage(image, 0, 0, null);
+    g.drawImage(this.image, 0, 0, null);
   }
 
   /**
