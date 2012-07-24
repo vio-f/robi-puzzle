@@ -29,9 +29,8 @@ public class OriginalImagePanel extends JPanel {
     ClassLoader classLoader = null;
     try {
       classLoader = Thread.currentThread().getContextClassLoader();
-      InputStream input = classLoader.getResourceAsStream("resources/ak47.jpg");
+      InputStream input = classLoader.getResourceAsStream("resources/ic_board.jpg");
       this.image = ImageIO.read(input);
-      
     } catch (Exception ex) {
       System.out.println(ex.getStackTrace().toString());
     }
@@ -43,8 +42,10 @@ public class OriginalImagePanel extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    this.image = this.resizeImageToSize(this.image, this.getWidth(), this.getHeight(), this.getBackground());
-    g.drawImage(this.image, 0, 0, null);
+    //move this to be executed only once
+    //this.image = this.resizeImageToSize(this.image, this.getWidth(), this.getHeight(), this.getBackground());
+    //g.drawImage(this.image, 0, 0, null);
+    g.drawImage(this.scaleImage(this.image), 0, 0, null);
   }
 
   /**
@@ -56,7 +57,7 @@ public class OriginalImagePanel extends JPanel {
    * @param background
    * @return
    */
-  public BufferedImage resizeImageToSize(BufferedImage img, int width, int height, Color background) {
+  private BufferedImage resizeImageToSize(BufferedImage img, int width, int height, Color background) {
     int imgWidth = img.getWidth();
     int imgHeight = img.getHeight();
     //figure out how this magic works
@@ -77,6 +78,34 @@ public class OriginalImagePanel extends JPanel {
       g.dispose();
     }
     return newImage;
+  }
+  
+  /**
+   * TODO DESCRIPTION
+   * @param originalImage
+   * @return
+   */
+  private BufferedImage scaleImage(BufferedImage originalImage){
+    int nextWidth = this.getWidth();
+    int nextHeight = this.getHeight();
+    BufferedImage resizedImage = new BufferedImage(nextWidth, nextHeight, originalImage.getType());
+    Graphics2D g = resizedImage.createGraphics();
+    g.drawImage(originalImage, 0, 0, nextWidth, nextHeight, null);
+    g.dispose();
+ 
+    return resizedImage;
+    }
+  
+  /**
+   * TODO DESCRIPTION
+   */
+  private void iNeedABreak() {
+    try {
+      Thread.sleep(5*1000);
+    } catch (InterruptedException e) {
+      // TODO Add your own exception handling here, consider logging
+      e.printStackTrace();
+    }
   }
 
 }
