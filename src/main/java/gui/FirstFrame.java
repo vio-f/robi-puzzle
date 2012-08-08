@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -12,10 +13,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import test.LoadImageApp;
 
@@ -35,7 +38,7 @@ public class FirstFrame extends JFrame {
   private OriginalImagePanel imagePanel = null;
 
   /** puzzlePiecesPanel */
-  private JPanel puzzlePiecesPanel = new JPanel();
+  private PuzzlePiecesPanel puzzlePiecesPanel = new PuzzlePiecesPanel();
 
   /** reconstructionPanel */
   private JPanel reconstructionPanel = new JPanel();
@@ -45,6 +48,9 @@ public class FirstFrame extends JFrame {
 
   /** panelDimensions */
   private Dimension panelDimensions = null;
+  
+  /** defaultBorder */
+  Border defaultBorder = BorderFactory.createLineBorder(Color.BLACK, 2);
 
   /**
    * Constructs a new instance.
@@ -74,7 +80,14 @@ public class FirstFrame extends JFrame {
     this.panelDimensions = new Dimension(this.getWidth() / 2, this.getHeight() / 2);
     //this.panelDimensions = new Dimension(400, 300);
     this.imagePanel = new OriginalImagePanel();
- 
+    
+    //TODO make this dynamic
+    
+    this.imagePanel.setBorder(this.defaultBorder);
+    this.puzzlePiecesPanel.setBorder(this.defaultBorder);
+    this.reconstructionPanel.setBorder(this.defaultBorder);
+    this.optionsPanel.setBorder(this.defaultBorder);
+    
     this.add(this.imagePanel);
     this.add(this.puzzlePiecesPanel);
     this.add(this.reconstructionPanel);
