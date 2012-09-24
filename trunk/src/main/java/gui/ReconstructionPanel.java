@@ -1,22 +1,20 @@
 package gui;
 
-
 /**
- * TODO DESCRIPTION
+ * Panel containing the puzzle pieces at their final places
  * 
  * @author viorel.florian
  */
-public class PuzzlePiecesPanel extends AbstractPuzzlePiecesPanel {
-
+public class ReconstructionPanel extends AbstractPuzzlePiecesPanel{
   /** serialVersionUID */
   private static final long serialVersionUID = 1L;
 
   /**
    * Constructs a new instance.
    */
-  public PuzzlePiecesPanel() {
+  public ReconstructionPanel() {
     super();
     this.addPuzzleContainers();
   }
 
-}
+}//EOF

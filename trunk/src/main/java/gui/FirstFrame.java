@@ -41,7 +41,7 @@ public class FirstFrame extends JFrame {
   private PuzzlePiecesPanel puzzlePiecesPanel = new PuzzlePiecesPanel();
 
   /** reconstructionPanel */
-  private JPanel reconstructionPanel = new JPanel();
+  private ReconstructionPanel reconstructionPanel = new ReconstructionPanel();
 
   /** optionsPanel */
   private JPanel optionsPanel = new JPanel();
