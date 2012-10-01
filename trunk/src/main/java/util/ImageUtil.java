@@ -8,7 +8,9 @@ package util;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
@@ -84,7 +86,7 @@ public class ImageUtil {
    * @param rows
    * @return
    */
-  public static BufferedImage[] splitImage(BufferedImage img, int cols, int rows) {  
+  public static BufferedImage[] splitImage(BufferedImage img, int rows, int cols) {  
     int w = img.getWidth()/cols;  
     int h = img.getHeight()/rows;  
     int num = 0;  
@@ -150,5 +152,14 @@ public class ImageUtil {
     g.dispose();
     return resizedImage;
   }
+  
+  /**
+   * Converts a BufferedImage
+   * @param bufferedImage
+   * @return
+   */
+  public static Image bufferedImageToImage(BufferedImage bufferedImage) {
+    return Toolkit.getDefaultToolkit().createImage(bufferedImage.getSource());
+}
 
 }//EOF
