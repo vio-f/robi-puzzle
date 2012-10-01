@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Dimension;
+
 /**
  * Panel containing the puzzle pieces at their final places
  * 
@@ -11,10 +13,11 @@ public class ReconstructionPanel extends AbstractPuzzlePiecesPanel{
 
   /**
    * Constructs a new instance.
+   * @param panelDimensions 
    */
-  public ReconstructionPanel() {
-    super();
-    this.addPuzzleContainers();
+  public ReconstructionPanel(Dimension panelDimensions) {
+    super(panelDimensions);
+    this.addPuzzleContainersAndPopulate(3, 3);
   }
 
 }//EOF
