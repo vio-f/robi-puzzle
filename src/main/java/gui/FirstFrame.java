@@ -1,26 +1,13 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.List;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
-import test.LoadImageApp;
 
 /**
  * The first JFrame displayed when the application starts
@@ -28,6 +15,9 @@ import test.LoadImageApp;
  * @author Adrian.Haidu
  */
 public class FirstFrame extends JFrame {
+  /** serialVersionUID */
+  private static final long serialVersionUID = 6910499871776922363L;
+
   /** initialDimension */
   private Dimension initialDimension = new Dimension(800, 600);
 
@@ -38,10 +28,10 @@ public class FirstFrame extends JFrame {
   private OriginalImagePanel imagePanel = null;
 
   /** puzzlePiecesPanel */
-  private PuzzlePiecesPanel puzzlePiecesPanel = new PuzzlePiecesPanel();
+  private PuzzlePiecesPanel puzzlePiecesPanel = null;
 
   /** reconstructionPanel */
-  private ReconstructionPanel reconstructionPanel = new ReconstructionPanel();
+  private ReconstructionPanel reconstructionPanel = null;
 
   /** optionsPanel */
   private JPanel optionsPanel = new JPanel();
@@ -60,7 +50,6 @@ public class FirstFrame extends JFrame {
     this.setVisible(true);
     this.configureFrame();
     this.configComponents();
-    this.addComponents();
     pack();
   }
 
@@ -80,6 +69,8 @@ public class FirstFrame extends JFrame {
     this.panelDimensions = new Dimension(this.getWidth() / 2, this.getHeight() / 2);
     //this.panelDimensions = new Dimension(400, 300);
     this.imagePanel = new OriginalImagePanel();
+    this.puzzlePiecesPanel = new PuzzlePiecesPanel(this.panelDimensions);
+    this.reconstructionPanel = new ReconstructionPanel(this.panelDimensions);
     
     //TODO make this dynamic
     
@@ -94,11 +85,4 @@ public class FirstFrame extends JFrame {
     this.add(this.optionsPanel);
   }
 
-  /**
-   * Populate the frame with content
-   */
-  private void addComponents() {
-
-  }
-
-}
+}//EOF
