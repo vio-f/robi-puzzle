@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Dimension;
+
 
 /**
  * TODO DESCRIPTION
@@ -13,10 +15,11 @@ public class PuzzlePiecesPanel extends AbstractPuzzlePiecesPanel {
 
   /**
    * Constructs a new instance.
+   * @param panelDimensions 
    */
-  public PuzzlePiecesPanel() {
-    super();
-    this.addPuzzleContainers();
+  public PuzzlePiecesPanel(Dimension panelDimensions) {
+    super(panelDimensions);
+    this.addPuzzleContainersAndPopulate(3, 3);
   }
 
 }
