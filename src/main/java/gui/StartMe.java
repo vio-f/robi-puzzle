@@ -8,6 +8,10 @@ package gui;
 public class StartMe {
   
   
+  /**
+   * Main entry point
+   * @param args
+   */
   public static void main(String[] args) {
     new FirstFrame();
   }
